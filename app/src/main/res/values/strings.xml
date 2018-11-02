@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">BaseApplication</string>
+    <string name="search_edit_hint">Ingredients for your meal</string>
+    <string name="search_button_text">get recipes</string>
+    <string name="home_button_text">Home</string>
+
+    <string name="flavor1">Spicy</string>
+    <string name="flavor2">Savory</string>
+    <string name="flavor3">Sweet</string>
+    <string name="flavor4">Sour</string>
+    <string name="flavor5">Bitter</string>
+
+    <string-array name="CookTime">
+        <item>&lt; 20 minutes</item>
+        <item> &lt; 60 minutes</item>
+        <item> slow cooker / hot pot</item>
+    </string-array>
+
+    <string name="vegan">vegan</string>
+    <string name="vegetarian">vegetarian</string>
+
 </resources>
