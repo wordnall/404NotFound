@@ -9,6 +9,7 @@
     <string name="flavor3">Sweet</string>
     <string name="flavor4">Sour</string>
     <string name="flavor5">Bitter</string>
+    <string name="flavor6">Salty</string>
 
     <string-array name="CookTime">
         <item>&lt; 20 minutes</item>
