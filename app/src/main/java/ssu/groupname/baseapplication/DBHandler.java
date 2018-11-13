@@ -1,91 +1,114 @@
 package ssu.groupname.baseapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
+
 
 public class DBHandler extends SQLiteOpenHelper {
-    //information of data base
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "cookDataBase.db";
-    public static final String TABLE_NAME = "ingredient";
-    public static final String COLUMN_NAME = "Name";
-    public static final String COLUMN_EXP = "EXP";
 
-    //init the data base
-    public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "ingredientDB.db";
+    public static final String TABLE_INGREDIENTS = "ingredient";
+    public static final String COLUMN_ID = "IngredentID";
+    public static final String COLUMN_NAME = "IngredientName";
+    public static final String COLUMN_EXP = "IngredientEXP";
+
+    public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
+    {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "CREATE TABLE" + TABLE_NAME + "(" + COLUMN_NAME + "EXP DATE," + COLUMN_EXP + "TEXT )";
-        db.execSQL(CREATE_TABLE);
+        String CREATE_STUDENT_TABLE = "CREATE TABLE " +
+                TABLE_INGREDIENTS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_NAME
+                + " TEXT, " + COLUMN_EXP + " TEXT " + ")";
+        db.execSQL(CREATE_STUDENT_TABLE);
+        //create table ingredient(IngredientID integer primary key, IngredientName text, IngredientEXP text)
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1){}
-    public String loadHandler()
-    {
-        String result = "";
-        String query = "Select * FROM " + TABLE_NAME;
+    public void onUpgrade(SQLiteDatabase db, int oldVersion,
+                          int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENTS);
+        onCreate(db);
+
+    }
+
+    public void addHandler(Ingredient ingredient) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, ingredient.getID());
+        values.put(COLUMN_NAME, ingredient.getIngredientName());
+        values.put(COLUMN_EXP, ingredient.getEXPdate());
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query,null);
-        while (cursor.moveToNext())
-        {
+        db.insert(TABLE_INGREDIENTS, null, values);
+        db.close();
+    }
+
+    public Ingredient findHandler(String ingredientname) {
+        String query = "Select * FROM " + TABLE_INGREDIENTS + " WHERE " +
+                COLUMN_NAME + " = '" + ingredientname + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        Ingredient ingredient = new Ingredient();
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            ingredient.setID(Integer.parseInt(cursor.getString(0)));
+            ingredient.setIngredientName(cursor.getString(1));
+            ingredient.setEXPdate(cursor.getString(2));
+            cursor.close();
+        } else {
+            ingredient = null;
+        }
+        db.close();
+        return ingredient;
+    }
+
+    public String loadHandler() {
+        String result = "";
+        String query = "Select*FROM " + TABLE_INGREDIENTS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        while (cursor.moveToNext()) {
             int result_0 = cursor.getInt(0);
             String result_1 = cursor.getString(1);
-            result += String.valueOf(result_0)+" "+ result_1+ System.getProperty("line.separator");
+            String result_2 = cursor.getString(2);
+            result += String.valueOf(result_0) + " " + result_1 + " " + result_2 + " " +
+                    System.getProperty("line.separator");
         }
         cursor.close();
         db.close();
         return result;
     }
-    public void addHandler(INGdatabase ING) {
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_EXP, ING.getEXPdate());
-        values.put(COLUMN_NAME, ING.getIngredent());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_NAME,null,values);
-        db.close();
 
-    }
-    public INGdatabase findHandler(String ingredient){
-        String query = "Select * From " + TABLE_NAME + "Where" + COLUMN_NAME + " = " + "'" + ingredient + "'";
+    public boolean deleteHandler(int ID) {
+        boolean result = false;
+        String query = "Select*FROM " + TABLE_INGREDIENTS + " WHERE " + COLUMN_ID + " = '" + String.valueOf(ID) + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        INGdatabase ingdatabase = new INGdatabase();
-        if(cursor.moveToFirst()) {
-            cursor.moveToFirst();
-            ingdatabase.setEXPdate(cursor.getString(0));
-            ingdatabase.setIngredent(cursor.getString(1));
+        Ingredient ingredient = new Ingredient();
+        if (cursor.moveToFirst()) {
+            ingredient.setID(Integer.parseInt(cursor.getString(0)));
+            db.delete(TABLE_INGREDIENTS, COLUMN_ID + "=?",
+                    new String[] {
+                            String.valueOf(ingredient.getID())
+                    });
             cursor.close();
-        }else
-        {
-            ingdatabase = null;
+            result = true;
         }
         db.close();
-        return ingdatabase;
+        return result;
     }
-    public boolean deleteHandler(String ingredient){
-        boolean result = false;
-        String query = "Select * From " + TABLE_NAME + "where" + COLUMN_EXP + "= '" + ingredient + "'";
+
+    public boolean updateHandler(int ID, String name,String EXP) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query,null);
-        INGdatabase ingdatabase = new INGdatabase();
-        if (cursor.moveToFirst())
-        {
-            ingdatabase.setIngredent(cursor.getString(1));
-            db.delete(TABLE_NAME,COLUMN_NAME + "=?", new String[])
-        }
-
-
-        return false;
+        ContentValues args = new ContentValues();
+        args.put(COLUMN_ID, ID);
+        args.put(COLUMN_NAME, name);
+        args.put(COLUMN_EXP, EXP);
+        return db.update(TABLE_INGREDIENTS, args, COLUMN_ID + "=" + ID, null) > 0;
     }
-    public boolean updateHandler(String ingredient, String EXP){
-        return false;
-    }
-
 }

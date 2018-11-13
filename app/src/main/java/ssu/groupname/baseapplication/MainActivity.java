@@ -16,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchButton = (Button) findViewById(R.id.button2);//button 2 is refined search
-        listButton = (Button) findViewById(R.id.button);// links to the ingreadents page/list page
+        searchButton = findViewById(R.id.button2);//button 2 is refined search
+        listButton =  findViewById(R.id.button);// links to the ingreadents page/list page
 
 
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 //do something
                 Intent intent = new Intent(MainActivity.this, listActivity.class);
 
