@@ -8,18 +8,17 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private Button listButton;
-    private Button searchButton;
+    private Button searchActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        searchButton = findViewById(R.id.button2);//button 2 is refined search
+
         listButton =  findViewById(R.id.button);// links to the ingreadents page/list page
-
-
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,8 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(intent);
             }
+        });
 
+        searchActivity = findViewById(R.id.search_page_button);
+        searchActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
 
+                startActivity(intent);
+            }
         });
     }
 }
