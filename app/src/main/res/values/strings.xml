@@ -17,7 +17,9 @@
         <item> slow cooker / hot pot</item>
     </string-array>
 
-    <string name="vegan">vegan</string>
-    <string name="vegetarian">vegetarian</string>
-
+    <string name="Vegan">Vegan</string>
+    <string name="Vegetarian">Vegetarian</string>
+    <string name="Pescetarian">Pescetarian</string>
+    <string name="Lacto_vegetarian">Lacto vegetarian</string>
+    <string name="Ovo_vegetarian">Ovo vegetarian</string>
 </resources>
