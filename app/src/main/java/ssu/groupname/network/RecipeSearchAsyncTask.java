@@ -9,6 +9,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import ssu.groupname.Models.RecipeModel;
 
 public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeModel>> {
 
@@ -22,9 +23,20 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
     @Override
     protected List<RecipeModel> doInBackground(String... params) {
         String searchParam = params[0];
-        String flavors = params[1];
-        String diets = params[2];
-        String time = params[3];
+        String spicy = params[8];
+        String sweet = params[2];
+        String salty = params[3];
+        String bitter = params[4];
+        String savory = params[5];
+        String sour = params[6];
+        //parse JSONP for searchValues for each diet or hardcode
+        String  vegetarian = params[2];
+        String lactoVegetarian = params[12];
+        String ovoVegetarian = params[13];
+        String vegan = params[14];
+        String pescetarian = params[15];
+        String paleo = params[16];
+        String time = String.valueOf(Integer.parseInt(params[1]) * 60);
 
         OkHttpClient client = new OkHttpClient();
         HttpUrl url = HttpUrl.parse(baseApiUrl).newBuilder()
@@ -32,8 +44,13 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
                 .addQueryParameter("_app_id", appId)
                 .addQueryParameter("maxResult", "30")
                 .addQueryParameter("q", searchParam)
-                .addQueryParameter("flavor", flavors)
-                .addQueryParameter("")
+                .addQueryParameter("flavor.spicy.max", spicy)
+                .addQueryParameter("flavor.sweet.max", sweet)
+                .addQueryParameter("flavor.salty.max", salty)
+                .addQueryParameter("flavor.bitter.max", bitter)
+                .addQueryParameter("flavor.savory.max", savory)
+                .addQueryParameter("flavor.sour.max", sour)
+                .addQueryParameter("maxTotalTimeInSeconds", time)
                 .build();
         Request request = new Request.Builder()
                 .url(url)

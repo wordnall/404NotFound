@@ -12,9 +12,9 @@
     <string name="flavor6">Salty</string>
 
     <string-array name="CookTime">
-        <item>&lt; 20 minutes</item>
-        <item> &lt; 60 minutes</item>
-        <item> slow cooker / hot pot</item>
+        <item>20</item>
+        <item>60</item>
+        <item>40</item>
     </string-array>
 
     <string name="Vegan">Vegan</string>
@@ -22,4 +22,5 @@
     <string name="Pescetarian">Pescetarian</string>
     <string name="Lacto_vegetarian">Lacto vegetarian</string>
     <string name="Ovo_vegetarian">Ovo vegetarian</string>
+    <string name="Paleo">Paleo</string>
 </resources>
