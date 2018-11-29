@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -26,6 +27,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private TextView spicy, sweet, salty, bitter, savory, sour;
     private SeekBar spicyBar, sweetBar, saltyBar, bitterBar, savoryBar, sourBar;
+
 
     int spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
     @Override
@@ -91,6 +93,8 @@ public class SearchActivity extends AppCompatActivity {
         sourRating = sweetBar.getProgress();
         sour.append(": " + sourRating);
 
+
+
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,5 +154,15 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
+    veganDiet.setOnCheckChangeListener(new OnCheckedChangeListener() {
+        @Override
+        public void onCheckChanged(CompoundButton buttonView, boolean isChecked) {
+            if (buttonView.isChecked()) {
+                //string = "480^vegan"
+            } else {
+                //string = ""
+            }
+        }
+    });
 
 }
