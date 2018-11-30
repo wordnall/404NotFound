@@ -3,6 +3,8 @@ package ssu.groupname.baseapplication;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -10,7 +12,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class SearchActivity extends AppCompatActivity {
-
+    CheckBox veganBox, vegetarianBox, pescetarianBox, ovoBox, lactoBox, paleoBox;
     TextView flavorRating, spicy, sweet, salty, bitter, savory, sour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,15 @@ public class SearchActivity extends AppCompatActivity {
         flavorRating.append(": " + rating);
     }
 
+    CheckBox checkbox;
+
+    checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        @Override
+        public void onCheckedChanged( CompoundButton buttonView, boolean isChecked) {
+
+        }
+    })
     SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -100,6 +111,5 @@ public class SearchActivity extends AppCompatActivity {
 
         }
     };
-
 
 }
