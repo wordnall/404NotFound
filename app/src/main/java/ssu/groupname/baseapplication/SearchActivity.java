@@ -110,8 +110,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
-
-
+  
     SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -153,16 +152,4 @@ public class SearchActivity extends AppCompatActivity {
 
         }
     };
-
-    veganDiet.setOnCheckChangeListener(new OnCheckedChangeListener() {
-        @Override
-        public void onCheckChanged(CompoundButton buttonView, boolean isChecked) {
-            if (buttonView.isChecked()) {
-                //string = "480^vegan"
-            } else {
-                //string = ""
-            }
-        }
-    });
-
 }
