@@ -29,7 +29,8 @@ public class SearchActivity extends AppCompatActivity {
     private SeekBar spicyBar, sweetBar, saltyBar, bitterBar, savoryBar, sourBar;
 
 
-    int spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
+    private int spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
+    private String paleoParam, lactoParam, pescetarianParam, ovoParam, veganParam, vegetarianParam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class SearchActivity extends AppCompatActivity {
 
         searchEditText = (EditText)findViewById(R.id.search_edit_text);
         searchButton = (Button)findViewById(R.id.search_button);
+
         vegetarianDiet = (CheckBox)findViewById(R.id.vegetarianBox);
         veganDiet = (CheckBox)findViewById(R.id.veganBox);
         lactoDiet = (CheckBox)findViewById(R.id.lactoBox);
@@ -71,27 +73,27 @@ public class SearchActivity extends AppCompatActivity {
 
         spicyBar.setOnSeekBarChangeListener(seekBarChangeListener);
         spicyRating = spicyBar.getProgress();
-        spicy.append(": " + spicyRating);
+        spicy.setText("Spicy: " + spicyRating);
 
         sweetBar.setOnSeekBarChangeListener(seekBarChangeListener);
         sweetRating = sweetBar.getProgress();
-        sweet.append(": " + sweetRating);
+        sweet.setText("Sweet: " + sweetRating);
 
         saltyBar.setOnSeekBarChangeListener(seekBarChangeListener);
         saltyRating = sweetBar.getProgress();
-        salty.append(": " + saltyRating);
+        salty.setText("Salty: " + saltyRating);
 
         bitterBar.setOnSeekBarChangeListener(seekBarChangeListener);
         bitterRating = sweetBar.getProgress();
-        bitter.append(": " + bitterRating);
+        bitter.setText("Bitter: " + bitterRating);
 
         savoryBar.setOnSeekBarChangeListener(seekBarChangeListener);
         savoryRating = sweetBar.getProgress();
-        savory.append(": " + savoryRating);
+        savory.setText("Savory: " + savoryRating);
 
         sourBar.setOnSeekBarChangeListener(seekBarChangeListener);
         sourRating = sweetBar.getProgress();
-        sour.append(": " + sourRating);
+        sour.setText("Sour: " + sourRating);
 
 
 
@@ -104,9 +106,31 @@ public class SearchActivity extends AppCompatActivity {
                         recipeName.setText(recipeModel.getRecipeName());
                     }
                 };
+
+                if (veganDiet.isChecked()) {
+                    veganParam = "386^Vegan";
+                }
+                if(vegetarianDiet.isChecked()){
+                    vegetarianParam = "387^Lacto-ovo vegetarian";
+                }
+                if (paleoDiet.isChecked()) {
+                    paleoParam = "403^Paleo";
+                }
+                if (lactoDiet.isChecked()) {
+                    lactoParam = "388^Lacto vegetarian";
+                }
+                if (ovoDiet.isChecked()) {
+                    ovoParam = "389^Ovo vegetarian";
+                }
+                if (pescetarianDiet.isChecked()) {
+                    pescetarianParam = "390^Pescetarian";
+                }
+
                 RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
                 task.setRecipeCallbackListener(recipeCallbackListener);
-                task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString());
+                task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString(),
+                        veganParam, vegetarianParam, paleoParam, lactoParam, ovoParam, pescetarianParam,
+                        String.valueOf(spicyRating), String.valueOf(sweetRating), String.valueOf(saltyRating), String.valueOf(bitterRating), String.valueOf(savoryRating), String.valueOf(sourRating));
             }
         });
     }
@@ -116,27 +140,27 @@ public class SearchActivity extends AppCompatActivity {
         public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             switch(seekBar.getId()) {
                 case R.id.spicyBar:
-                    spicy.append(": " + i);
+                    spicy.setText("Spicy: " + i);
                     spicyRating = i;
                     break;
                 case R.id.sweetBar:
-                    sweet.append(": " + i);
+                    sweet.setText("Sweet: " + i);
                     sweetRating = i;
                     break;
                 case R.id.saltyBar:
-                    salty.append(": " + i);
+                    salty.setText("Salty: " + i);
                     saltyRating = i;
                     break;
                 case R.id.bitterBar:
-                    bitter.append(": " + i);
+                    bitter.setText("Bitter: " + i);
                     bitterRating = i;
                     break;
                 case R.id.savoryBar:
-                    savory.append(": " + i);
+                    savory.setText("Savory: " + i);
                     savoryRating = i;
                     break;
                 case R.id.sourBar:
-                    sour.append(": " + i);
+                    sour.setText("Sour: " + i);
                     sourRating = i;
                     break;
             }

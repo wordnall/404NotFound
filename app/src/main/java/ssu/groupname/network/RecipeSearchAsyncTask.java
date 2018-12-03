@@ -29,7 +29,7 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
         String bitter = params[4];
         String savory = params[5];
         String sour = params[6];
-        //parse JSONP for searchValues for each diet or hardcode
+
         String  vegetarian = params[2];
         String lactoVegetarian = params[12];
         String ovoVegetarian = params[13];
@@ -39,19 +39,25 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
         String time = String.valueOf(Integer.parseInt(params[1]) * 60);
 
         OkHttpClient client = new OkHttpClient();
-        HttpUrl url = HttpUrl.parse(baseApiUrl).newBuilder()
+        HttpUrl.Builder urlBuild = HttpUrl.parse(baseApiUrl).newBuilder()
                 .addQueryParameter("_app_key", apiKey)
                 .addQueryParameter("_app_id", appId)
                 .addQueryParameter("maxResult", "30")
                 .addQueryParameter("q", searchParam)
+                .addQueryParameter("maxTotalTimeInSeconds", time)
                 .addQueryParameter("flavor.spicy.max", spicy)
                 .addQueryParameter("flavor.sweet.max", sweet)
                 .addQueryParameter("flavor.salty.max", salty)
                 .addQueryParameter("flavor.bitter.max", bitter)
                 .addQueryParameter("flavor.savory.max", savory)
-                .addQueryParameter("flavor.sour.max", sour)
-                .addQueryParameter("maxTotalTimeInSeconds", time)
-                .build();
+                .addQueryParameter("flavor.sour.max", sour);
+        for(int i = 2; i < 8; i++){
+            if (params[i] != null) {
+                urlBuild.addQueryParameter("allowedDiet[]", params[i]);
+            }
+        }
+        HttpUrl url = urlBuild.build();
+
         Request request = new Request.Builder()
                 .url(url)
                 .build();
