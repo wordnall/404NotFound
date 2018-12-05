@@ -1,7 +1,10 @@
 package ssu.groupname.baseapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
     private CheckBox vegetarianDiet, lactoDiet, ovoDiet, veganDiet, pescetarianDiet, paleoDiet;
     private EditText searchEditText;
     private RecipeSearchAsyncTask.RecipeCallbackListener recipeCallbackListener;
+    private RecyclerView recyclerView;
 
 
     private TextView spicy, sweet, salty, bitter, savory, sour;
@@ -97,6 +101,9 @@ public class SearchActivity extends AppCompatActivity {
         sourRating = sweetBar.getProgress();
         sour.setText("Sour: " + sourRating);
 
+        recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
+        recyclerView
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +135,7 @@ public class SearchActivity extends AppCompatActivity {
                     public void onRecipeCallback(List<RecipeModel> models) {
                         RecipeViewAdapter adapter = new RecipeViewAdapter(models);
                         recyclerView.setAdapter(adapter);
+                        Intent recyclerViewIntent = new Intent(SearchActivity.this, recyclerView)
                     }
                 });
                 task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString(),

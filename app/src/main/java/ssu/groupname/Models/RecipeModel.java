@@ -1,8 +1,9 @@
 package ssu.groupname.Models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RecipeModel {
+public class RecipeModel implements Serializable {
     // class member variables
     //make getters and setters
     private String recipeName;
