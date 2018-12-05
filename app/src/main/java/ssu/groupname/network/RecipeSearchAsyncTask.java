@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import ssu.groupname.Models.RecipeModel;
+import ssu.groupname.utils.RecipeParser;
 
 public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeModel>> {
 

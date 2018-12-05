@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 import ssu.groupname.Models.RecipeModel;
 import ssu.groupname.network.RecipeSearchAsyncTask;
 
@@ -100,12 +102,6 @@ public class SearchActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recipeCallbackListener = new RecipeSearchAsyncTask.RecipeCallbackListener() {
-                    @Override
-                    public void onRecipeCallback(RecipeModel recipeModel) {
-                        recipeName.setText(recipeModel.getRecipeName());
-                    }
-                };
 
                 if (veganDiet.isChecked()) {
                     veganParam = "386^Vegan";
@@ -127,7 +123,13 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 RecipeSearchAsyncTask task = new RecipeSearchAsyncTask();
-                task.setRecipeCallbackListener(recipeCallbackListener);
+                task.setListener(new RecipeSearchAsyncTask.RecipeCallbackListener() {
+                    @Override
+                    public void onRecipeCallback(List<RecipeModel> models) {
+                        RecipeViewAdapter adapter = new RecipeViewAdapter(models);
+                        recyclerView.setAdapter(adapter);
+                    }
+                });
                 task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString(),
                         veganParam, vegetarianParam, paleoParam, lactoParam, ovoParam, pescetarianParam,
                         String.valueOf(spicyRating), String.valueOf(sweetRating), String.valueOf(saltyRating), String.valueOf(bitterRating), String.valueOf(savoryRating), String.valueOf(sourRating));
