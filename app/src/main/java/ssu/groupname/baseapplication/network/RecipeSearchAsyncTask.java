@@ -1,4 +1,4 @@
-package ssu.groupname.network;
+package ssu.groupname.baseapplication.network;
 
 import android.os.AsyncTask;
 
@@ -9,14 +9,14 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import ssu.groupname.Models.RecipeModel;
-import ssu.groupname.utils.RecipeParser;
+import ssu.groupname.baseapplication.models.RecipeModel;
+import ssu.groupname.baseapplication.utils.RecipeParser;
 
 public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeModel>> {
 
     private final String baseApiUrl = "http://api.yummly.com/v1/api/recipes";
-    private final String apiKey = "ec3e34e0bb6801670dbd3dbd02ce7608";
-    private final String appId = "4911b643";
+    private final String apiKey = "e7786cf1c7edc19107313870638da7f9";
+    private final String appId = "b3fc2c4c";
 
     private RecipeCallbackListener listener;
 

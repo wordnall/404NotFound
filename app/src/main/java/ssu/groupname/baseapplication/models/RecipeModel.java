@@ -1,74 +1,113 @@
-package models;
+package ssu.groupname.baseapplication.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeModel {
+public class RecipeModel implements Parcelable {
 
-    private String recipeName;
-
-    private int rating;
-
-    private int totalTimeInSeconds;
-
+    private List<String> ingredients;
     private List<String> smallImageUrls;
+    private String recipeName;
+    private int totalTimeInSeconds;
+    private FlavorProfile flavors;
+    private int rating;
+    private String recipeImageUrl;
+    private double piquant = 0;
+    private double meaty = 0;
+    private double bitter = 0;
+    private double sweet = 0;
+    private double sour = 0;
+    private double salty = 0;
 
-
-    public String getRecipeName() {
-        return recipeName;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public int getTotalTimeInSeconds() {
-        return totalTimeInSeconds;
-    }
-
+    public List<String> getIngredients() { return ingredients; }
     public List<String> getSmallImageUrls() {
         return smallImageUrls;
     }
-}
+    public String getRecipeName() {
+        return recipeName;
+    }
+    public int getTotalTimeInSeconds() {
+        return totalTimeInSeconds;
+    }
+    public double getFlavorPiquant() { return piquant; }
+    public double getFlavorMeaty() { return meaty; }
+    public double getFlavorBitter() { return bitter; }
+    public double getFlavorSweet() { return sweet; }
+    public double getFlavorSour() { return sour; }
+    public double getFlavorSalty() { return salty; }
+    public int getRating() {
+        return rating;
+    }
+    public boolean FlavorTest() {
+        if (flavors == null)
+            return false;
+        else
+            return true;
+    }
+
+    private class FlavorProfile implements Serializable {
+        public double piquant;
+        public double meaty;
+        public double bitter;
+        public double sweet;
+        public double sour;
+        public double salty;
+    }
 
 
-// ******** SAMPLE RESPONSE FROM YUMMLY API ***********
-// http://api.yummly.com/v1/api/recipes?_app_key=ec3e34e0bb6801670dbd3dbd02ce7608&_app_id=4911b643&q=eggs
-/*
-{
-  "imageUrlsBySize": {
-    "90": "https://lh3.googleusercontent.com/nFnxFbtS0-tPfFgeZSn4qVnHwJqVhdk1itSKcMO_H4Z-H_m85dm_-Dwx11lWn6M67KuZ_1ke1zrA9CnDEjm0aGQ=s90-c"
-  },
-  "sourceDisplayName": "Saving Room for Dessert",
-  "ingredients": [
-    "unsalted butter",
-    "sugar",
-    "lemon zest",
-    "fresh lemon juice",
-    "unbleached all purpose flour",
-    "cornstarch",
-    "salt",
-    "confectioners' sugar"
-  ],
-  "id": "Lemon-Meltaways-1985782",
-  "smallImageUrls": [
-    "https://lh3.googleusercontent.com/jLDJ-mlRcQThw1mzfJYiHAtVf0jOcJZF6nVTxTITePMvsIoVrdUDPtiTt3UxBzRrXS0kr8SuDJxxpqvwND94WQ=s90"
-  ],
-  "recipeName": "Lemon Meltaways",
-  "totalTimeInSeconds": 1980,
-  "attributes": {
-    "course": [
-      "Desserts",
-      "Afternoon Tea"
-    ]
-  },
-  "flavors": {
-    "piquant": 0.5,
-    "meaty": 0.6666666666666666,
-    "bitter": 0.16666666666666666,
-    "sweet": 0.8333333333333334,
-    "sour": 0.3333333333333333,
-    "salty": 0.16666666666666666
-  },
-  "rating": 4
+    protected RecipeModel(Parcel in) {
+        recipeName = in.readString();
+        rating = in.readInt();
+        totalTimeInSeconds = in.readInt();
+        recipeImageUrl = in.readString();
+        if (in.readByte() == 0x01) {
+            smallImageUrls = new ArrayList<String>();
+            in.readList(smallImageUrls, String.class.getClassLoader());
+        } else {
+            smallImageUrls = null;
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(recipeName);
+        dest.writeInt(rating);
+        dest.writeInt(totalTimeInSeconds);
+        dest.writeDouble(piquant);
+        dest.writeDouble(meaty);
+        dest.writeDouble(bitter);
+        dest.writeDouble(sweet);
+        dest.writeDouble(sour);
+        dest.writeDouble(salty);
+        dest.writeList(ingredients);
+        dest.writeString(recipeImageUrl);
+        if (smallImageUrls == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(smallImageUrls);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<RecipeModel> CREATOR = new Parcelable.Creator<RecipeModel>() {
+        @Override
+        public RecipeModel createFromParcel(Parcel in) {
+            return new RecipeModel(in);
+        }
+
+        @Override
+        public RecipeModel[] newArray(int size) {
+            return new RecipeModel[size];
+        }
+    };
 }
-*/

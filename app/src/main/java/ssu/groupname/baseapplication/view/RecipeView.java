@@ -1,8 +1,8 @@
-package ssu.tholland.androidlab5.view;
+package ssu.groupname.baseapplication.view;
 
 import java.util.List;
 
-import ssu.tholland.androidlab5.models.RecipeModel;
+import ssu.groupname.baseapplication.models.RecipeModel;
 
 public interface RecipeView {
 

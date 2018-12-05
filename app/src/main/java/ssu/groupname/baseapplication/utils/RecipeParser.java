@@ -1,11 +1,11 @@
-package ssu.groupname.utils;
+package ssu.groupname.baseapplication.utils;
 
 import com.google.gson.Gson;
 
 import java.util.List;
 
-import ssu.groupname.Models.RecipeModel;
-import ssu.groupname.Models.RecipeResponse;
+import ssu.groupname.baseapplication.models.RecipeModel;
+import ssu.groupname.baseapplication.models.RecipeResponse;
 
 public class RecipeParser {
 
