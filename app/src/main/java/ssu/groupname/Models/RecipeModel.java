@@ -30,6 +30,10 @@ public class RecipeModel implements Parcelable {
         return rating;
     }
 
+    public int getTotalTimeInSeconds() {
+        return totalTimeInSeconds;
+    }
+
     public List<String> getSmallImageUrls() {
         return smallImageUrls;
     }
@@ -79,4 +83,12 @@ public class RecipeModel implements Parcelable {
             return new RecipeModel[size];
         }
     };
+
+
+    public boolean FlavorTest() {
+        if (flavors == null)
+            return false;
+        else
+            return true;
+    }
 }
