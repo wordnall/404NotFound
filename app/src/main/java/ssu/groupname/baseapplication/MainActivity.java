@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        listButton =  findViewById(R.id.button);// links to the ingreadents page/list page
+        listButton =  findViewById(R.id.ingredients_page_button);// links to the ingreadents page/list page
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        randomSearchActivity = findViewById(R.id.random_search_button);
+        /*randomSearchActivity = findViewById(R.id.random_search_button);
         searchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +54,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, randomSearchActivity.class));
             }
-        });
+        });*/
     }
 }

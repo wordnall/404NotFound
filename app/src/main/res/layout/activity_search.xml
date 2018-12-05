@@ -69,10 +69,15 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/home_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggle_button"
-        app:layout_constraintVertical_bias="0.923">
+        app:layout_constraintVertical_bias="0.563">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Flavors"/>
 
 
         <TextView
@@ -85,8 +90,8 @@
             android:id="@+id/spicyBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1"
-            android:progress="0" />
+            android:max="100"
+            android:progress="100" />
 
         <TextView
             android:id="@+id/savory"
@@ -97,7 +102,9 @@
         <SeekBar
             android:id="@+id/savoryBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100"/>
 
         <TextView
             android:id="@+id/sweet"
@@ -109,20 +116,21 @@
             android:id="@+id/sweetBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1"
-            android:progress="0" />
+            android:max="100"
+            android:progress="100" />
 
         <TextView
             android:id="@+id/sour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/flavor4" />
+
         <SeekBar
             android:id="@+id/sourBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1"
-            android:progress="0" />
+            android:max="100"
+            android:progress="100" />
 
         <TextView
             android:id="@+id/bitter"
@@ -134,8 +142,8 @@
             android:id="@+id/bitterBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1"
-            android:progress="0" />
+            android:max="100"
+            android:progress="100" />
 
         <TextView
             android:id="@+id/salty"
@@ -147,8 +155,8 @@
             android:id="@+id/saltyBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="1"
-            android:progress="0" />
+            android:max="100"
+            android:progress="100" />
 
     </LinearLayout>
 
@@ -229,17 +237,5 @@
             android:text="@string/Paleo"/>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/home_button"
-        android:layout_width="129dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/home_button_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

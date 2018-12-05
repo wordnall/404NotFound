@@ -19,7 +19,9 @@ public class RecyclerViewActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        RecipeViewAdapter adapter = new RecipeViewAdapter(models);
-        recyclerview.setAdapter(adapter);
+
+
+        RecipeViewAdapter adapter = new RecipeViewAdapter(getIntent().getParcelableArrayListExtra("RecipeModel"));
+        recyclerView.setAdapter(adapter);
     }
 }

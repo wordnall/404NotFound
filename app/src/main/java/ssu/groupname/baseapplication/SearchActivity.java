@@ -17,12 +17,14 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import ssu.groupname.Models.RecipeModel;
 import ssu.groupname.network.RecipeSearchAsyncTask;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements Serializable {
 
     private Button searchButton;
     private CheckBox vegetarianDiet, lactoDiet, ovoDiet, veganDiet, pescetarianDiet, paleoDiet;
@@ -35,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
     private SeekBar spicyBar, sweetBar, saltyBar, bitterBar, savoryBar, sourBar;
 
 
-    private int spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
+    private double spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
     private String paleoParam, lactoParam, pescetarianParam, ovoParam, veganParam, vegetarianParam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,43 +69,38 @@ public class SearchActivity extends AppCompatActivity {
         savory = (TextView)findViewById(R.id.savory);
         sour = (TextView)findViewById(R.id.sour);
 
-
-         spicyBar = (SeekBar)findViewById(R.id.spicyBar);
-         sweetBar = (SeekBar)findViewById(R.id.sweetBar);
-         saltyBar = (SeekBar)findViewById(R.id.saltyBar);
-         bitterBar = (SeekBar)findViewById(R.id.bitterBar);
-         savoryBar = (SeekBar)findViewById(R.id.savoryBar);
-         sourBar = (SeekBar)findViewById(R.id.sourBar);
+        spicyBar = (SeekBar)findViewById(R.id.spicyBar);
+        sweetBar = (SeekBar)findViewById(R.id.sweetBar);
+        saltyBar = (SeekBar)findViewById(R.id.saltyBar);
+        bitterBar = (SeekBar)findViewById(R.id.bitterBar);
+        savoryBar = (SeekBar)findViewById(R.id.savoryBar);
+        sourBar = (SeekBar)findViewById(R.id.sourBar);
 
 
 
         spicyBar.setOnSeekBarChangeListener(seekBarChangeListener);
         spicyRating = spicyBar.getProgress();
-        spicy.setText("Spicy: " + spicyRating);
+        spicy.setText("Spicy: " + (int)spicyRating);
 
         sweetBar.setOnSeekBarChangeListener(seekBarChangeListener);
         sweetRating = sweetBar.getProgress();
-        sweet.setText("Sweet: " + sweetRating);
+        sweet.setText("Sweet: " + (int)sweetRating);
 
         saltyBar.setOnSeekBarChangeListener(seekBarChangeListener);
         saltyRating = sweetBar.getProgress();
-        salty.setText("Salty: " + saltyRating);
+        salty.setText("Salty: " + (int)saltyRating);
 
         bitterBar.setOnSeekBarChangeListener(seekBarChangeListener);
         bitterRating = sweetBar.getProgress();
-        bitter.setText("Bitter: " + bitterRating);
+        bitter.setText("Bitter: " + (int)bitterRating);
 
         savoryBar.setOnSeekBarChangeListener(seekBarChangeListener);
         savoryRating = sweetBar.getProgress();
-        savory.setText("Savory: " + savoryRating);
+        savory.setText("Savory: " + (int)savoryRating);
 
         sourBar.setOnSeekBarChangeListener(seekBarChangeListener);
         sourRating = sweetBar.getProgress();
-        sour.setText("Sour: " + sourRating);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerView
+        sour.setText("Sour: " + (int)sourRating);
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -133,14 +130,18 @@ public class SearchActivity extends AppCompatActivity {
                 task.setListener(new RecipeSearchAsyncTask.RecipeCallbackListener() {
                     @Override
                     public void onRecipeCallback(List<RecipeModel> models) {
-                        RecipeViewAdapter adapter = new RecipeViewAdapter(models);
-                        recyclerView.setAdapter(adapter);
-                        Intent recyclerViewIntent = new Intent(SearchActivity.this, recyclerView)
+
+                        Intent recyclerViewIntent = new Intent(SearchActivity.this, RecyclerViewActivity.class);
+                        /*Bundle bundle = new Bundle();
+
+                        bundle.putParcelableArrayList("RecipeModel", (ArrayList)models);*/
+                        recyclerViewIntent.putParcelableArrayListExtra("RecipeModel", (ArrayList)models);
+                        startActivity(recyclerViewIntent);
                     }
                 });
                 task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString(),
                         veganParam, vegetarianParam, paleoParam, lactoParam, ovoParam, pescetarianParam,
-                        String.valueOf(spicyRating), String.valueOf(sweetRating), String.valueOf(saltyRating), String.valueOf(bitterRating), String.valueOf(savoryRating), String.valueOf(sourRating));
+                        String.valueOf(spicyRating/100), String.valueOf(sweetRating/100), String.valueOf(saltyRating/100), String.valueOf(bitterRating/100), String.valueOf(savoryRating/100), String.valueOf(sourRating/100));
             }
         });
     }

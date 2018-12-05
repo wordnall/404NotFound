@@ -24,20 +24,31 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
     @Override
     protected List<RecipeModel> doInBackground(String... params) {
         String searchParam = params[0];
-        String spicy = params[8];
-        String sweet = params[2];
-        String salty = params[3];
-        String bitter = params[4];
-        String savory = params[5];
-        String sour = params[6];
-
-        String  vegetarian = params[2];
-        String lactoVegetarian = params[12];
-        String ovoVegetarian = params[13];
-        String vegan = params[14];
-        String pescetarian = params[15];
-        String paleo = params[16];
         String time = String.valueOf(Integer.parseInt(params[1]) * 60);
+
+        String vegan = params[2];
+        String  vegetarian = params[3];
+        String paleo = params[4];
+        String lactoVegetarian = params[5];
+        String ovoVegetarian = params[6];
+        String pescetarian = params[7];
+
+        String spicy = params[8];
+        String sweet = params[9];
+        String salty = params[10];
+        String bitter = params[11];
+        String savory = params[12];
+        String sour = params[13];
+
+
+/*
+                .addQueryParameter("flavor.spicy.max", spicy)
+                .addQueryParameter("flavor.sweet.max", sweet)
+                .addQueryParameter("flavor.salty.max", salty)
+                .addQueryParameter("flavor.bitter.max", bitter)
+                .addQueryParameter("flavor.savory.max", savory)
+                .addQueryParameter("flavor.sour.max", sour);
+                */
 
         OkHttpClient client = new OkHttpClient();
         HttpUrl.Builder urlBuild = HttpUrl.parse(baseApiUrl).newBuilder()
@@ -45,13 +56,8 @@ public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeMo
                 .addQueryParameter("_app_id", appId)
                 .addQueryParameter("maxResult", "30")
                 .addQueryParameter("q", searchParam)
-                .addQueryParameter("maxTotalTimeInSeconds", time)
-                .addQueryParameter("flavor.spicy.max", spicy)
-                .addQueryParameter("flavor.sweet.max", sweet)
-                .addQueryParameter("flavor.salty.max", salty)
-                .addQueryParameter("flavor.bitter.max", bitter)
-                .addQueryParameter("flavor.savory.max", savory)
-                .addQueryParameter("flavor.sour.max", sour);
+                .addQueryParameter("maxTotalTimeInSeconds", time);
+
         for(int i = 2; i < 8; i++){
             if (params[i] != null) {
                 urlBuild.addQueryParameter("allowedDiet[]", params[i]);
