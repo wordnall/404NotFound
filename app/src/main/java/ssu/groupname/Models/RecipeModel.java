@@ -10,6 +10,15 @@ import java.util.List;
 
 
 public class RecipeModel implements Parcelable {
+
+    private class FlavorProfile implements Serializable {
+        public double piquant;
+        public double meaty;
+        public double bitter;
+        public double sweet;
+        public double sour;
+        public double salty;
+    }
     // class member variables
     //make getters and setters
     private String recipeName;
@@ -17,6 +26,8 @@ public class RecipeModel implements Parcelable {
     private int totalTimeInSeconds;
     private String recipeImageUrl;
     private List<String> smallImageUrls;
+    private FlavorProfile flavors;
+    private List<String> ingredients;
 
     public String getRecipeImageUrl() {
         return recipeImageUrl;
@@ -37,6 +48,8 @@ public class RecipeModel implements Parcelable {
     public List<String> getSmallImageUrls() {
         return smallImageUrls;
     }
+
+    public List<String> getIngredients() { return ingredients; }
 
 
     protected RecipeModel(Parcel in) {
