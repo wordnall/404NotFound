@@ -42,17 +42,9 @@ public class MainActivity extends AppCompatActivity {
         searchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, randomSearchActivity.class);
+                Intent intent = new Intent(MainActivity.this, RandomSearchActivity.class);
 
                 startActivity(intent);
-            }
-        });
-
-        ingredientsActivity = findViewById(R.id.ingredients_page_button);
-        ingredientsActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, randomSearchActivity.class));
             }
         });*/
     }
