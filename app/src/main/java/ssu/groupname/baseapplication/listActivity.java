@@ -36,7 +36,7 @@ public class listActivity extends AppCompatActivity {
         ingredientEXP.setText("");
     }
 
-    public void findIngredient (View view) {
+    public void findIngredient (View view) {//find by name only
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
         Ingredient ingredient = dbHandler.findHandler(ingredientname.getText().toString());
         if (ingredient != null) {
