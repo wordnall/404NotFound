@@ -67,6 +67,11 @@ public class DBHandler extends SQLiteOpenHelper {
         return ingredient;
     }
 
+    public String[] allNames() {
+        String query = "Select * FROM " + TABLE_INGREDIENTS + "'";
+        return null;
+    }
+
     public String loadHandler() {
         String result = "";
         String query = "Select*FROM " + TABLE_INGREDIENTS;
