@@ -9,14 +9,42 @@
     <string name="flavor3">Sweet</string>
     <string name="flavor4">Sour</string>
     <string name="flavor5">Bitter</string>
+    <string name="flavor6">Salty</string>
 
-    <string-array name="CookTime">
-        <item>&lt; 20 minutes</item>
-        <item> &lt; 60 minutes</item>
-        <item> slow cooker / hot pot</item>
-    </string-array>
+    <string-array name="Cuisine">
+        <item>None</item>
+        <item>Kid-friendly</item>
+        <item>American</item>
+        <item>Italian</item>
+        <item>Asian</item>
+        <item>Mexican</item>
+        <item>Southern</item>
+        <item>French</item>
+        <item>Southwestern</item>
+        <item>Barbecue</item>
+        <item>Indian</item>
+        <item>Chinese</item>
+        <item>Cajun</item>
+        <item>English</item>
+        <item>Mediterranean</item>
+        <item>Greek</item>
+        <item>Spanish</item>
+        <item>German</item>
+        <item>Thai</item>
+        <item>Moroccan</item>
+        <item>Irish</item>
+        <item>Japanese</item>
+        <item>Cuban</item>
+        <item>Hawaiin</item>
+        <item>Swedish</item>
+        <item>Hungarian</item>
+        <item>Portugese</item>
+   </string-array>
 
-    <string name="vegan">vegan</string>
-    <string name="vegetarian">vegetarian</string>
-
+    <string name="Vegan">Vegan</string>
+    <string name="Vegetarian">Vegetarian</string>
+    <string name="Pescetarian">Pescetarian</string>
+    <string name="Lacto_vegetarian">Lacto vegetarian</string>
+    <string name="Ovo_vegetarian">Ovo vegetarian</string>
+    <string name="Paleo">Paleo</string>
 </resources>

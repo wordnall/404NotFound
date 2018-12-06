@@ -10,7 +10,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/search_edit_text"
@@ -21,102 +23,244 @@
 
         <Button
             android:id="@+id/search_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_button_text" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout5"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintVertical_bias="0.081">
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cuisine" />
+
+        <Spinner
+            android:id="@+id/cuisine_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="38dp">
+
+        </Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="123dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.274">
+
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flavors"/>
+            android:text="Max Cook Time"
+            android:textAlignment="center" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flavor1"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flavor2"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flavor3"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flavor4"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flavor5"/>
-
-        </LinearLayout>
-
+            android:id="@+id/linearLayout6"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cook Time"/>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cook_time_spinner"
-            >
+                android:text="Hours:" />
 
-        </Spinner>
+            <EditText
+                android:id="@+id/hours_edit_text"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diet"/>
-        <RadioGroup
+        <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <RadioButton
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/vegetarian"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/vegan"/>
-        </RadioGroup>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Only recipes with available ingredients"/>
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    />
+                android:text="Minutes:" />
+
+            <EditText
+                android:id="@+id/minutes_edit_text"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/home_button"
-        android:layout_width="129dp"
-        android:layout_height="50dp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="196dp"
+        android:layout_height="255dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flavors"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/spicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor1" />
+
+        <SeekBar
+            android:id="@+id/spicyBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/savory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor2" />
+
+        <SeekBar
+            android:id="@+id/savoryBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/sweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor3" />
+
+        <SeekBar
+            android:id="@+id/sweetBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/sour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor4" />
+
+        <SeekBar
+            android:id="@+id/sourBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/bitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor5" />
+
+        <SeekBar
+            android:id="@+id/bitterBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/salty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flavor6" />
+
+        <SeekBar
+            android:id="@+id/saltyBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="100" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/home_button_text"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diet"
+            android:textAlignment="center" />
+
+        <CheckBox
+            android:id="@+id/vegetarianBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Vegetarian" />
+
+        <CheckBox
+            android:id="@+id/veganBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Vegan" />
+
+        <CheckBox
+            android:id="@+id/pescetarianBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Pescetarian" />
+
+        <CheckBox
+            android:id="@+id/lactoBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Lacto_vegetarian" />
+
+        <CheckBox
+            android:id="@+id/ovoBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Ovo_vegetarian" />
+
+        <CheckBox
+            android:id="@+id/paleoBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Paleo" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

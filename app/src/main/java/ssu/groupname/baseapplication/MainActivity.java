@@ -8,9 +8,8 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button listButton, searchActivity, randomSearchActivity, ingredientsActivity;
 
-    private Button listButton;
-    private Button searchActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        listButton =  findViewById(R.id.button);// links to the ingreadents page/list page
+        listButton =  findViewById(R.id.ingredients_page_button);// links to the ingreadents page/list page
         listButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,5 +37,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /*randomSearchActivity = findViewById(R.id.random_search_button);
+        searchActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RandomSearchActivity.class);
+
+                startActivity(intent);
+            }
+        });*/
     }
 }
