@@ -41,7 +41,6 @@ public class listActivity extends AppCompatActivity {
         Ingredient ingredient = dbHandler.findHandler(ingredientname.getText().toString());
         if (ingredient != null) {
             lst.setText(String.valueOf(ingredient.getID()) +" "+ ingredient.getIngredientName());
-
         } else {
             lst.setText("No Match Found");
         }
