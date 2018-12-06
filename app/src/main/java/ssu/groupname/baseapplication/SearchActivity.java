@@ -28,7 +28,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
 
     private Button searchButton;
     private CheckBox vegetarianDiet, lactoDiet, ovoDiet, veganDiet, pescetarianDiet, paleoDiet;
-    private EditText searchEditText;
+    private EditText searchEditText, hoursEditText, minutesEditText;
     private RecipeSearchAsyncTask.RecipeCallbackListener recipeCallbackListener;
     private RecyclerView recyclerView;
 
@@ -44,15 +44,18 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        Spinner spinner = (Spinner) findViewById(R.id.cook_time_spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.cuisine_spinner);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.CookTime, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Cuisine, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
 
         searchEditText = (EditText)findViewById(R.id.search_edit_text);
+        hoursEditText = (EditText)findViewById(R.id.hours_edit_text);
+        minutesEditText = (EditText)findViewById(R.id.minutes_edit_text);
+
         searchButton = (Button)findViewById(R.id.search_button);
 
         vegetarianDiet = (CheckBox)findViewById(R.id.vegetarianBox);
@@ -141,7 +144,8 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                 });
                 task.execute(searchEditText.getText().toString(), spinner.getSelectedItem().toString(),
                         veganParam, vegetarianParam, paleoParam, lactoParam, ovoParam, pescetarianParam,
-                        String.valueOf(spicyRating/100), String.valueOf(sweetRating/100), String.valueOf(saltyRating/100), String.valueOf(bitterRating/100), String.valueOf(savoryRating/100), String.valueOf(sourRating/100));
+                        String.valueOf(spicyRating/100), String.valueOf(sweetRating/100), String.valueOf(saltyRating/100), String.valueOf(bitterRating/100), String.valueOf(savoryRating/100), String.valueOf(sourRating/100),
+                        hoursEditText.getText().toString(), minutesEditText.getText().toString());
             }
         });
     }

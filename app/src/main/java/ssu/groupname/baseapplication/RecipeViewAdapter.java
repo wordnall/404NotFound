@@ -34,14 +34,6 @@ public class RecipeViewAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
         RecipeModel model = recipeCollection.get(position);
 
         recipeViewHolder.bindView(model);
-        recipeViewHolder.details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, SearchDetailActivity.class);
-                intent.putExtra("details", recipeCollection.get(position));
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override
