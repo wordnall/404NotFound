@@ -38,6 +38,6 @@ public class RandomSearchActivity extends AppCompatActivity {
                 startActivity(recyclerViewIntent);
             }
         });
-        task.execute(searchParam);
+        task.execute(searchParam, "None", "", "", "", "", "", "", "1", "1", "1", "1", "1", "1", "", "");
     }
 }
