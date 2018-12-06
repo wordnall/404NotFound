@@ -7,9 +7,65 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class RecipeModel implements Parcelable {
+
+    private List<String> ingredients;
+    private List<String> smallImageUrls;
+    private String recipeName;
+    private int totalTimeInSeconds;
+    private ssu.groupname.Models.RecipeModel.FlavorProfile flavors;
+    private int rating;
+    private String recipeImageUrl;
+    private Boolean hasFlavor;
+
+    public boolean FlavorTest() {
+        if (flavors == null)
+            hasFlavor = false;
+        else
+            hasFlavor = true;
+        return hasFlavor;
+    }
+    public List<String> getIngredients() { return ingredients; }
+    public List<String> getSmallImageUrls() { return smallImageUrls; }
+    public String getRecipeName() { return recipeName; }
+    public int getTotalTimeInSeconds() { return totalTimeInSeconds; }
+    public double getFlavorPiquant() {
+        if (FlavorTest())
+            return flavors.piquant;
+        else
+            return 0;
+    }
+    public double getFlavorMeaty() {
+        if (FlavorTest())
+            return flavors.meaty;
+        else
+            return 0;
+    }
+    public double getFlavorBitter() {
+        if (FlavorTest())
+            return flavors.bitter;
+        else
+            return 0;
+    }
+    public double getFlavorSweet() {
+        if (FlavorTest())
+            return flavors.sweet;
+        else
+            return 0;
+    }
+    public double getFlavorSour() {
+        if (FlavorTest())
+            return flavors.sour;
+        else
+            return 0;
+    }
+    public double getFlavorSalty() {
+        if (FlavorTest())
+            return flavors.salty;
+        else
+            return 0;
+    }
+    public int getRating() { return rating; }
 
     private class FlavorProfile implements Serializable {
         public double piquant;
@@ -19,50 +75,25 @@ public class RecipeModel implements Parcelable {
         public double sour;
         public double salty;
     }
-    // class member variables
-    //make getters and setters
-    private String recipeName;
-    private int rating;
-    private int totalTimeInSeconds;
-    private String recipeImageUrl;
-    private List<String> smallImageUrls;
-    private FlavorProfile flavors;
-    private List<String> ingredients;
-
-    public String getRecipeImageUrl() {
-        return recipeImageUrl;
-    }
-
-    public String getRecipeName() {
-        return recipeName;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public int getTotalTimeInSeconds() {
-        return totalTimeInSeconds;
-    }
-
-    public List<String> getSmallImageUrls() {
-        return smallImageUrls;
-    }
-
-    public List<String> getIngredients() { return ingredients; }
-
 
     protected RecipeModel(Parcel in) {
-        recipeName = in.readString();
-        rating = in.readInt();
-        totalTimeInSeconds = in.readInt();
-        recipeImageUrl = in.readString();
+        if (in.readByte() == 0x01) {
+            ingredients = new ArrayList<String>();
+            in.readList(ingredients, String.class.getClassLoader());
+        } else {
+            ingredients = null;
+        }
         if (in.readByte() == 0x01) {
             smallImageUrls = new ArrayList<String>();
             in.readList(smallImageUrls, String.class.getClassLoader());
         } else {
             smallImageUrls = null;
         }
+        recipeName = in.readString();
+        totalTimeInSeconds = in.readInt();
+        flavors = (ssu.groupname.Models.RecipeModel.FlavorProfile) in.readValue(ssu.groupname.Models.RecipeModel.FlavorProfile.class.getClassLoader());
+        rating = in.readInt();
+        recipeImageUrl = in.readString();
     }
 
     @Override
@@ -72,36 +103,35 @@ public class RecipeModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(recipeName);
-        dest.writeInt(rating);
-        dest.writeInt(totalTimeInSeconds);
-        dest.writeString(recipeImageUrl);
+        if (ingredients == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(ingredients);
+        }
         if (smallImageUrls == null) {
             dest.writeByte((byte) (0x00));
         } else {
             dest.writeByte((byte) (0x01));
             dest.writeList(smallImageUrls);
         }
+        dest.writeString(recipeName);
+        dest.writeInt(totalTimeInSeconds);
+        dest.writeValue(flavors);
+        dest.writeInt(rating);
+        dest.writeString(recipeImageUrl);
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<RecipeModel> CREATOR = new Parcelable.Creator<RecipeModel>() {
+    public static final Parcelable.Creator<ssu.groupname.Models.RecipeModel> CREATOR = new Parcelable.Creator<ssu.groupname.Models.RecipeModel>() {
         @Override
-        public RecipeModel createFromParcel(Parcel in) {
-            return new RecipeModel(in);
+        public ssu.groupname.Models.RecipeModel createFromParcel(Parcel in) {
+            return new ssu.groupname.Models.RecipeModel(in);
         }
 
         @Override
-        public RecipeModel[] newArray(int size) {
-            return new RecipeModel[size];
+        public ssu.groupname.Models.RecipeModel[] newArray(int size) {
+            return new ssu.groupname.Models.RecipeModel[size];
         }
     };
-
-
-    public boolean FlavorTest() {
-        if (flavors == null)
-            return false;
-        else
-            return true;
-    }
 }

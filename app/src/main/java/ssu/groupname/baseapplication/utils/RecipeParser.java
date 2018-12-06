@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import ssu.groupname.baseapplication.models.RecipeModel;
-import ssu.groupname.baseapplication.models.RecipeResponse;
+import ssu.groupname.Models.RecipeModel;
+import ssu.groupname.Models.RecipeResponse;
 
 public class RecipeParser {
 

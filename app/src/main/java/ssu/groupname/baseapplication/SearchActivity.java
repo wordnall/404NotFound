@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-<<<<<<< HEAD
 
 import org.w3c.dom.Text;
 
@@ -134,9 +133,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                     public void onRecipeCallback(List<RecipeModel> models) {
 
                         Intent recyclerViewIntent = new Intent(SearchActivity.this, RecyclerViewActivity.class);
-                        /*Bundle bundle = new Bundle();
 
-                        bundle.putParcelableArrayList("RecipeModel", (ArrayList)models);*/
                         recyclerViewIntent.putParcelableArrayListExtra("RecipeModel", (ArrayList)models);
                         startActivity(recyclerViewIntent);
                     }

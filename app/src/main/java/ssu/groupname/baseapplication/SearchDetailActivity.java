@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import ssu.groupname.baseapplication.models.RecipeModel;
+import ssu.groupname.Models.RecipeModel;
 
 public class SearchDetailActivity extends AppCompatActivity {
 

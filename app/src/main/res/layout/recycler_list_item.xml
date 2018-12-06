@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
-<<<<<<< HEAD
     android:background="@drawable/border"
     android:padding="1dp"
     android:orientation="horizontal"
@@ -39,10 +38,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/recycler_item_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Details"/>
+        <Button
+            android:id="@+id/recycler_item_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Details"/>
 
+    </LinearLayout>
 </LinearLayout>

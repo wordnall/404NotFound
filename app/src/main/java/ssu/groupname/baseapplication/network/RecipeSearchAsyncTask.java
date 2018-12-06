@@ -9,7 +9,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import ssu.groupname.baseapplication.models.RecipeModel;
+import ssu.groupname.Models.RecipeModel;
 import ssu.groupname.baseapplication.utils.RecipeParser;
 
 public class RecipeSearchAsyncTask extends AsyncTask<String, Void, List<RecipeModel>> {

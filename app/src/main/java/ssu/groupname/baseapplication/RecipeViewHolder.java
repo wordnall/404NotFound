@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import org.w3c.dom.Text;
 
 import ssu.groupname.Models.RecipeModel;
+import ssu.groupname.baseapplication.R;
 
 
 public class RecipeViewHolder extends RecyclerView.ViewHolder {
@@ -28,7 +29,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         itemNameTextView = itemView.findViewById(R.id.recycler_item_name);
         itemRatingTextView = itemView.findViewById(R.id.recycler_item_rating);
         itemTimeTextView = itemView.findViewById(R.id.recycler_item_time);
-
+        details = itemView.findViewById(R.id.recycler_item_button);
     }
 
     public void bindView(RecipeModel model){
