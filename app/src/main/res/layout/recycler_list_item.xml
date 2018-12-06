@@ -25,7 +25,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/recycler_item_button"
+        android:id="@+id/go_to_recipe_website"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Details"/>
