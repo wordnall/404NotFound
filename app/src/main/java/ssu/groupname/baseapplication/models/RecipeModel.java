@@ -16,38 +16,56 @@ public class RecipeModel implements Parcelable {
     private FlavorProfile flavors;
     private int rating;
     private String recipeImageUrl;
-    private double piquant = 0;
-    private double meaty = 0;
-    private double bitter = 0;
-    private double sweet = 0;
-    private double sour = 0;
-    private double salty = 0;
+    private Boolean hasFlavor;
 
-    public List<String> getIngredients() { return ingredients; }
-    public List<String> getSmallImageUrls() {
-        return smallImageUrls;
-    }
-    public String getRecipeName() {
-        return recipeName;
-    }
-    public int getTotalTimeInSeconds() {
-        return totalTimeInSeconds;
-    }
-    public double getFlavorPiquant() { return piquant; }
-    public double getFlavorMeaty() { return meaty; }
-    public double getFlavorBitter() { return bitter; }
-    public double getFlavorSweet() { return sweet; }
-    public double getFlavorSour() { return sour; }
-    public double getFlavorSalty() { return salty; }
-    public int getRating() {
-        return rating;
-    }
     public boolean FlavorTest() {
         if (flavors == null)
-            return false;
+            hasFlavor = false;
         else
-            return true;
+            hasFlavor = true;
+        return hasFlavor;
     }
+    public List<String> getIngredients() { return ingredients; }
+    public List<String> getSmallImageUrls() { return smallImageUrls; }
+    public String getRecipeName() { return recipeName; }
+    public int getTotalTimeInSeconds() { return totalTimeInSeconds; }
+    public double getFlavorPiquant() {
+        if (FlavorTest())
+            return flavors.piquant;
+        else
+            return 0;
+    }
+    public double getFlavorMeaty() {
+        if (FlavorTest())
+            return flavors.meaty;
+        else
+            return 0;
+    }
+    public double getFlavorBitter() {
+        if (FlavorTest())
+            return flavors.bitter;
+        else
+            return 0;
+    }
+    public double getFlavorSweet() {
+        if (FlavorTest())
+            return flavors.sweet;
+        else
+            return 0;
+    }
+    public double getFlavorSour() {
+        if (FlavorTest())
+            return flavors.sour;
+        else
+            return 0;
+    }
+    public double getFlavorSalty() {
+        if (FlavorTest())
+            return flavors.salty;
+        else
+            return 0;
+    }
+    public int getRating() { return rating; }
 
     private class FlavorProfile implements Serializable {
         public double piquant;
@@ -58,56 +76,62 @@ public class RecipeModel implements Parcelable {
         public double salty;
     }
 
-
-    protected RecipeModel(Parcel in) {
-        recipeName = in.readString();
-        rating = in.readInt();
-        totalTimeInSeconds = in.readInt();
-        recipeImageUrl = in.readString();
-        if (in.readByte() == 0x01) {
-            smallImageUrls = new ArrayList<String>();
-            in.readList(smallImageUrls, String.class.getClassLoader());
-        } else {
-            smallImageUrls = null;
-        }
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(recipeName);
-        dest.writeInt(rating);
-        dest.writeInt(totalTimeInSeconds);
-        dest.writeDouble(piquant);
-        dest.writeDouble(meaty);
-        dest.writeDouble(bitter);
-        dest.writeDouble(sweet);
-        dest.writeDouble(sour);
-        dest.writeDouble(salty);
-        dest.writeList(ingredients);
-        dest.writeString(recipeImageUrl);
-        if (smallImageUrls == null) {
-            dest.writeByte((byte) (0x00));
-        } else {
-            dest.writeByte((byte) (0x01));
-            dest.writeList(smallImageUrls);
-        }
-    }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<RecipeModel> CREATOR = new Parcelable.Creator<RecipeModel>() {
-        @Override
-        public RecipeModel createFromParcel(Parcel in) {
-            return new RecipeModel(in);
+        protected RecipeModel(Parcel in) {
+            if (in.readByte() == 0x01) {
+                ingredients = new ArrayList<String>();
+                in.readList(ingredients, String.class.getClassLoader());
+            } else {
+                ingredients = null;
+            }
+            if (in.readByte() == 0x01) {
+                smallImageUrls = new ArrayList<String>();
+                in.readList(smallImageUrls, String.class.getClassLoader());
+            } else {
+                smallImageUrls = null;
+            }
+            recipeName = in.readString();
+            totalTimeInSeconds = in.readInt();
+            flavors = (FlavorProfile) in.readValue(FlavorProfile.class.getClassLoader());
+            rating = in.readInt();
+            recipeImageUrl = in.readString();
         }
 
         @Override
-        public RecipeModel[] newArray(int size) {
-            return new RecipeModel[size];
+        public int describeContents() {
+            return 0;
         }
-    };
-}
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            if (ingredients == null) {
+                dest.writeByte((byte) (0x00));
+            } else {
+                dest.writeByte((byte) (0x01));
+                dest.writeList(ingredients);
+            }
+            if (smallImageUrls == null) {
+                dest.writeByte((byte) (0x00));
+            } else {
+                dest.writeByte((byte) (0x01));
+                dest.writeList(smallImageUrls);
+            }
+            dest.writeString(recipeName);
+            dest.writeInt(totalTimeInSeconds);
+            dest.writeValue(flavors);
+            dest.writeInt(rating);
+            dest.writeString(recipeImageUrl);
+        }
+
+        @SuppressWarnings("unused")
+        public static final Parcelable.Creator<RecipeModel> CREATOR = new Parcelable.Creator<RecipeModel>() {
+            @Override
+            public RecipeModel createFromParcel(Parcel in) {
+                return new RecipeModel(in);
+            }
+
+            @Override
+            public RecipeModel[] newArray(int size) {
+                return new RecipeModel[size];
+            }
+        };
+    }
