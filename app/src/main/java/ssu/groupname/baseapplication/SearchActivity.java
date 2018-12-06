@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+<<<<<<< HEAD
 
 import org.w3c.dom.Text;
 
@@ -36,7 +37,6 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
     private TextView spicy, sweet, salty, bitter, savory, sour;
     private SeekBar spicyBar, sweetBar, saltyBar, bitterBar, savoryBar, sourBar;
 
-
     private double spicyRating, sweetRating, saltyRating, bitterRating, savoryRating, sourRating;
     private String paleoParam, lactoParam, pescetarianParam, ovoParam, veganParam, vegetarianParam;
     @Override
@@ -55,7 +55,6 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
         searchEditText = (EditText)findViewById(R.id.search_edit_text);
         hoursEditText = (EditText)findViewById(R.id.hours_edit_text);
         minutesEditText = (EditText)findViewById(R.id.minutes_edit_text);
-
         searchButton = (Button)findViewById(R.id.search_button);
 
         vegetarianDiet = (CheckBox)findViewById(R.id.vegetarianBox);

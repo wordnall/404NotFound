@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -127,7 +126,6 @@
             android:layout_height="wrap_content"
             android:text="Flavors"
             android:textAlignment="center" />
-
 
         <TextView
             android:id="@+id/spicy"
@@ -263,7 +261,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Paleo" />
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -39,7 +39,7 @@
         <item>Swedish</item>
         <item>Hungarian</item>
         <item>Portugese</item>
-    </string-array>
+   </string-array>
 
     <string name="Vegan">Vegan</string>
     <string name="Vegetarian">Vegetarian</string>
