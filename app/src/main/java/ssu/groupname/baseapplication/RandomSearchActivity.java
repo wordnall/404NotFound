@@ -21,9 +21,9 @@ public class RandomSearchActivity extends AppCompatActivity {
         ArrayList<String> dbIngredients = dbHandler.allNames();
         Random rand = new Random();
         String searchParam;
-        if (dbIngredients == null)
+        if (dbIngredients.size() == 0)
             searchParam = "Apple";
-        else if (dbIngredients.size() == 2)
+        else if (dbIngredients.size() == 1)
             searchParam = dbIngredients.get(0);
         else
             searchParam = dbIngredients.get(rand.nextInt(dbIngredients.size()));

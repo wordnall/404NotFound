@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         randomSearchActivity = findViewById(R.id.random_search_button);
-        searchActivity.setOnClickListener(new View.OnClickListener() {
+        randomSearchActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RandomSearchActivity.class);
