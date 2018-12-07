@@ -25,7 +25,6 @@
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".RecyclerViewActivity"></activity>
         <activity android:name=".SearchDetailActivity"></activity>
-        <activity android:name=".RandomSearchActivity"></activity>
     </application>
 
 </manifest>
