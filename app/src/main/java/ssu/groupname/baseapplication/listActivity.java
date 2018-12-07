@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,9 +21,11 @@ public class listActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         lst = (TextView) findViewById(R.id.list);
+        (lst).setMovementMethod(new ScrollingMovementMethod());
         ingredientid = (EditText) findViewById(R.id.ingredientID);
         ingredientname = (EditText) findViewById(R.id.ingredientName);
         ingredientEXP = (EditText) findViewById(R.id.ingredientExp);
+
     }
     public void addIngredient (View view) {
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
