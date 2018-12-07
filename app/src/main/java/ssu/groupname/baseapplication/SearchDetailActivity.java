@@ -27,12 +27,12 @@ public class SearchDetailActivity extends AppCompatActivity {
         if (!recipe.FlavorTest())
             flavorProfile.append("No flavor profile avalible");
         else {
-            flavorProfile.append(String.format("Piquant: %d%%\n", (int)(recipe.getFlavorPiquant() * 100)));
-            flavorProfile.append(String.format("Sweet: %d%%\n", (int)(recipe.getFlavorSweet() * 100)));
-            flavorProfile.append(String.format("Salty: %d%%\n", (int)(recipe.getFlavorSalty() * 100)));
-            flavorProfile.append(String.format("Sour: %d%%\n", (int)(recipe.getFlavorSour() * 100)));
-            flavorProfile.append(String.format("Bitter: %d%%\n", (int)(recipe.getFlavorBitter() * 100)));
-            flavorProfile.append(String.format("Meaty: %d%%", (int)(recipe.getFlavorMeaty() * 100)));
+            flavorProfile.append(String.format("Piquant: %f%%\n", recipe.getFlavorPiquant() * 100));
+            flavorProfile.append(String.format("Sweet: %f%%\n", recipe.getFlavorSweet() * 100));
+            flavorProfile.append(String.format("Salty: %f%%\n", recipe.getFlavorSalty() * 100));
+            flavorProfile.append(String.format("Sour: %f%%\n", recipe.getFlavorSour() * 100));
+            flavorProfile.append(String.format("Bitter: %f%%\n", recipe.getFlavorBitter() * 100));
+            flavorProfile.append(String.format("Meaty: %f%%", recipe.getFlavorMeaty() * 100));
         }
         TextView ingredientList = findViewById(R.id.Ingredient_List);
         for (int i = 0; i < recipe.getIngredients().size(); i++) {
